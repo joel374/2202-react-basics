@@ -1,3 +1,4 @@
+import { Button, Text } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
 const List = () => {
@@ -26,12 +27,15 @@ const List = () => {
   }, [])
 
   return (
-    <div>
-      <h1>List Page</h1>
-      <button onClick={() => setCounter(counter + 1)}>Tambah</button>
-    </div>
+    <>
+      <Text fontWeight="bold" fontSize="2xl" textAlign={"center"}>
+        List Page
+      </Text>
+      <Button onClick={() => setCounter(counter + 1)} bgColor={"green"}>
+        Tambah
+      </Button>
+    </>
   )
 }
 
 export default List
-

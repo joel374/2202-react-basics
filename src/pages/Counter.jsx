@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Text, Box, Button, Stack, HStack, Flex } from "@chakra-ui/react"
+import { Text, Box, Button, Stack, HStack } from "@chakra-ui/react"
 
 // const arr = [1, 2, 3, 4, 5]
 // const [a, b, c] = arr
@@ -82,4 +82,3 @@ const Counter = () => {
 }
 
 export default Counter
-

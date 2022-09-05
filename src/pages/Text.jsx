@@ -1,13 +1,15 @@
+import { Text } from "@chakra-ui/react"
 import Tweet from "../components/Tweet"
 
-const Text = () => {
+const TextPage = () => {
   return (
     <div>
-      <h1>Text Page</h1>
+      <Text fontWeight="bold" fontSize="2xl" textAlign={"center"}>
+        Text Page
+      </Text>
       <Tweet />
     </div>
   )
 }
 
-export default Text
-
+export default TextPage

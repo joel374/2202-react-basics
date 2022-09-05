@@ -1,4 +1,5 @@
 /* eslint-disable array-callback-return */
+import { Text } from "@chakra-ui/react"
 import { useState } from "react"
 
 const Filter = () => {
@@ -43,7 +44,9 @@ const Filter = () => {
 
   return (
     <div>
-      <h1>Filter Page</h1>
+      <Text fontWeight="bold" fontSize="2xl" textAlign={"center"}>
+        Filter Page
+      </Text>
       <input
         type="text"
         onChange={(event) => setInputFilter(event.target.value)}
@@ -62,4 +65,3 @@ const Filter = () => {
 }
 
 export default Filter
-

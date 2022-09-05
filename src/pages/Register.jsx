@@ -58,9 +58,9 @@ const Register = () => {
   const registerBtnHandler = () => {
     if (username.length >= 3 && email && password.length >= 8 && gender) {
       for (let user of users) {
-        if (user.email === email || user.username === username) {
+        if (user.email === email) {
           toast({
-            title: "Username or email has been used",
+            title: "Email has been used",
             status: "error",
           })
 
@@ -79,10 +79,10 @@ const Register = () => {
 
       setUsers([...users, newUser])
 
-      setUsername("")
-      setEmail("")
-      setPassword("")
-      setGender("")
+      // setUsername("")
+      // setEmail("")
+      // setPassword("")
+      // setGender("")
     } else {
       toast({
         title: "Form is still invalid",
@@ -198,4 +198,4 @@ const Register = () => {
 }
 
 export default Register
-
+// Network call (mamanggil data dari backend)

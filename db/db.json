@@ -1,0 +1,48 @@
+{
+  "products": [
+    {
+      "product_name": "Naga",
+      "price": 25000,
+      "stock": 100,
+      "id": 1
+    },
+    {
+      "product_name": "Jeruk",
+      "price": "5000",
+      "stock": "100",
+      "id": 2
+    },
+    {
+      "product_name": "Kurma",
+      "price": "7000",
+      "stock": "100",
+      "id": 3
+    },
+    {
+      "product_name": "Amer",
+      "price": "12000",
+      "stock": "12",
+      "id": 4
+    }
+  ],
+  "employees": [
+    {
+      "name": "Joel_Manisali",
+      "email": "joellegifanimanisali@gmail.com",
+      "password": "joellegifAni!1",
+      "id": 2
+    },
+    {
+      "name": "Sasukeadasdad",
+      "email": "2joellegifanimanisali@gmail.com",
+      "password": "asdasdadA11!",
+      "id": 3
+    },
+    {
+      "name": "joellegi",
+      "email": "1joellegifanimanisali@gmail.com",
+      "password": "Joel3007!",
+      "id": 4
+    }
+  ]
+}
