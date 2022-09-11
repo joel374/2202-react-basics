@@ -25,7 +25,7 @@ export const employeeSlice = createSlice({
         name: "",
         email: "",
         password: "",
-        id: "",
+        id: 0,
       }
     },
   },

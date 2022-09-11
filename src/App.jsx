@@ -15,7 +15,11 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Table,
+  Tbody,
+  Td,
   Text,
+  Tr,
 } from "@chakra-ui/react"
 import Register from "./pages/Register"
 import ReduxCounter from "./pages/ReduxCounter"
@@ -27,15 +31,16 @@ import EmployeeRegister from "./pages/EmployeeRegister"
 import EmployeeList from "./pages/EmployeeList"
 import Render from "./pages/Latihan"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {
   fillEmployeeList,
+  loginEmployee,
   logoutEmployee,
-  takeEmployee,
 } from "./features/employee/employeeSlice"
 import { jsonServerApi } from "./api"
 
 function App() {
+  const [login, setLogin] = useState("")
   const employeeSelector = useSelector((state) => state.employee)
 
   const dispatch = useDispatch()
@@ -66,7 +71,7 @@ function App() {
               as={Button}
               // rightIcon={<ChevronDownIcon />}
             >
-              Actions
+              Menu
             </MenuButton>
             <MenuList>
               <MenuItem>
@@ -86,6 +91,9 @@ function App() {
               </MenuItem>
               <MenuItem>
                 <Link to={"/filter"}>Filter</Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to={"/register"}>Register</Link>
               </MenuItem>
               <MenuItem>
                 <Link to={"/redux/counter"}>Redux Counter</Link>
@@ -116,16 +124,72 @@ function App() {
         </GridItem>
         <GridItem></GridItem>
         <GridItem></GridItem>
-        <GridItem></GridItem>
+        <GridItem>
+          <Text
+            onChange={() => setLogin(!login)}
+            height="28px"
+            size="sm"
+            color={"black"}
+          >
+            {login
+              ? // <Link to={"/employees/list"}>Login</Link>
+                "Login"
+              : employeeSelector.currentEmployee.name}
+          </Text>
+        </GridItem>
       </Grid>
+
       {/* Navbar exercise */}
       <Grid
-        templateColumns="repeat(4, 1fr)"
-        gap={6}
+        templateColumns="1.2fr 1fr"
+        gap={4}
         bgColor="#008081"
-        padding={"20px"}
+        padding={"10px"}
       >
-        <GridItem w="100%" h="12">
+        <GridItem>
+          <Box borderRadius={"7px"} p={"15px"} bgColor={"teal.200"}>
+            <Grid templateRows={"repeat(3, 1fr"}>
+              <GridItem>
+                <Text fontSize={"20px"} fontWeight={"bold"}>
+                  Current Employee
+                </Text>
+              </GridItem>
+
+              <GridItem>
+                <Table bgColor={"teal.200"}>
+                  <Tbody>
+                    <Tr>
+                      <Td>ID</Td>
+                      <Td>: {employeeSelector.currentEmployee.id}</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Name</Td>
+                      <Td>: {employeeSelector.currentEmployee.name}</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Email</Td>
+                      <Td>: {employeeSelector.currentEmployee.email}</Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Password</Td>
+                      <Td>: {employeeSelector.currentEmployee.password}</Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </GridItem>
+
+              <GridItem textAlign={"center"} mt={"15px"}>
+                {employeeSelector.currentEmployee.id ? (
+                  <Button onClick={() => dispatch(logoutEmployee())}>
+                    Logout
+                  </Button>
+                ) : null}
+              </GridItem>
+            </Grid>
+          </Box>
+        </GridItem>
+
+        <GridItem w="100%" my={"auto"}>
           <Box
             bg="white"
             textAlign={"center"}
@@ -136,34 +200,41 @@ function App() {
               Network Call Practice
             </Text>
           </Box>
-        </GridItem>
-        <GridItem mx={"auto"}>
-          <Text color={"white"}>
-            <Link to={"/employees/list"}>Users</Link>
-          </Text>
-          <Text>Current Employee</Text>
-          <Text>ID:{employeeSelector.currentEmployee.id}</Text>
-          <Text>Name:{employeeSelector.currentEmployee.name}</Text>
-          <Text>Email:{employeeSelector.currentEmployee.email}</Text>
-          <Text>Password:{employeeSelector.currentEmployee.password}</Text>
-          <Button onClick={() => dispatch(takeEmployee())}>Logout</Button>
-        </GridItem>
-        <GridItem mx={"auto"}>
-          <Text color={"white"}>
-            <Link to={"/employees/register"}>Register</Link>
-          </Text>
-        </GridItem>
-        <GridItem w="100%" h="12">
           <Box
             bg="white"
             textAlign={"center"}
             alignSelf={""}
             borderRadius={"5px"}
-            width={"50%"}
             alignItems={"center"}
+            mt={"10px"}
           >
             <Text fontSize={33} fontWeight={"bold"}>
-              Total Employee : {employeeSelector.data.length}
+              Total Employee:{employeeSelector.data.length}
+            </Text>
+          </Box>
+          <Box
+            bg="white"
+            textAlign={"center"}
+            alignSelf={""}
+            borderRadius={"5px"}
+            alignItems={"center"}
+            mt={"10px"}
+          >
+            <Text fontSize={33} fontWeight={"bold"}>
+              <Link to={"/employees/list"}>Users</Link>
+            </Text>
+          </Box>
+
+          <Box
+            bg="white"
+            textAlign={"center"}
+            alignSelf={""}
+            borderRadius={"5px"}
+            alignItems={"center"}
+            mt={"10px"}
+          >
+            <Text fontSize={33} fontWeight={"bold"}>
+              <Link to={"/employees/register"}>Register</Link>
             </Text>
           </Box>
         </GridItem>
@@ -180,6 +251,7 @@ function App() {
         <Route path="/redux/counter" element={<ReduxCounter />} />
         <Route path="/redux/student" element={<StudentForm />} />
         <Route path="/users" element={<UserList />} />
+
         {/* proudct */}
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/productlist/:id" element={<ProductEdit />} />

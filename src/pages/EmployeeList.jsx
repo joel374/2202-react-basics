@@ -116,78 +116,82 @@ const EmployeeList = () => {
 
   return (
     <>
-      <Box
-        width={"25%"}
-        mx={"auto"}
-        my={"40px"}
-        padding={"20px"}
-        bgColor={"teal.200"}
-        borderRadius="7px"
-      >
-        <Stack spacing={4}>
-          <Text fontSize="2xl" fontWeight="bold">
-            Login Employee
-          </Text>
-          <FormControl isInvalid={formik.errors.email}>
-            <FormLabel>Email</FormLabel>
-            <Input
-              autoComplete="off"
-              value={formik.values.email}
-              bgColor={"#EDF2F6"}
-              name="email"
-              type={"email"}
-              onChange={handleFormChange}
-            />
-            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-          </FormControl>
-          <FormControl isInvalid={formik.errors.password}>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                value={formik.values.password}
-                bgColor={"#EDF2F6"}
-                name="password"
-                type={showPassword ? "text" : "password"}
-                pr="60px"
-                onChange={handleFormChange}
-              />
-              <InputRightElement width="56px" mr="4px">
-                <Button
-                  onClick={() => setShowPassword(!showPassword)}
-                  height="28px"
-                  size="sm"
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-          </FormControl>
-          <Button
-            alignSelf="center"
-            bgColor={"#EDF2F6"}
-            // isDisabled={employeeSelector.currentEmployee.id === val.id}
-            // onClick={() => dispatch(loginEmployee(val))}
-            onClick={formik.handleSubmit}
+      {employeeSelector.currentEmployee.id ? null : (
+        <>
+          <Box
+            width={"25%"}
+            mx={"auto"}
+            my={"40px"}
+            padding={"20px"}
+            bgColor={"teal.200"}
+            borderRadius="7px"
           >
-            Login
-          </Button>
-        </Stack>
-      </Box>
-      <Box>
-        <TableContainer width={"800px"} mx={"auto"} my={"40px"}>
-          <Table variant="striped" colorScheme="teal">
-            <Thead>
-              <Tr>
-                <Th>Name</Th>
-                <Th>Email</Th>
-                <Th>Password</Th>
-              </Tr>
-            </Thead>
-            <Tbody>{renderEmployees()}</Tbody>
-          </Table>
-        </TableContainer>
-      </Box>
+            <Stack spacing={4}>
+              <Text fontSize="2xl" fontWeight="bold">
+                Login Employee
+              </Text>
+              <FormControl isInvalid={formik.errors.email}>
+                <FormLabel>Email</FormLabel>
+                <Input
+                  autoComplete="off"
+                  value={formik.values.email}
+                  bgColor={"#EDF2F6"}
+                  name="email"
+                  type={"email"}
+                  onChange={handleFormChange}
+                />
+                <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={formik.errors.password}>
+                <FormLabel>Password</FormLabel>
+                <InputGroup>
+                  <Input
+                    value={formik.values.password}
+                    bgColor={"#EDF2F6"}
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    pr="60px"
+                    onChange={handleFormChange}
+                  />
+                  <InputRightElement width="56px" mr="4px">
+                    <Button
+                      onClick={() => setShowPassword(!showPassword)}
+                      height="28px"
+                      size="sm"
+                    >
+                      {showPassword ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+              </FormControl>
+              <Button
+                alignSelf="center"
+                bgColor={"#EDF2F6"}
+                // isDisabled={employeeSelector.currentEmployee.id === val.id}
+                // onClick={() => dispatch(loginEmployee(val))}
+                onClick={formik.handleSubmit}
+              >
+                Login
+              </Button>
+            </Stack>
+          </Box>
+          <Box>
+            <TableContainer width={"800px"} mx={"auto"} my={"40px"}>
+              <Table variant="striped" colorScheme="teal">
+                <Thead>
+                  <Tr>
+                    <Th>Name</Th>
+                    <Th>Email</Th>
+                    <Th>Password</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>{renderEmployees()}</Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </>
+      )}
     </>
   )
 }

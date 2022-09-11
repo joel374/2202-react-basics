@@ -65,7 +65,17 @@ const EmployeeRegister = () => {
         alert(err)
       }
     },
-    
+    validationSchema: Yup.object({
+      name: Yup.string().required().min(6),
+      email: Yup.string().required().email(),
+      password: Yup.string()
+        .required()
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+          "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        ),
+    }),
+    validateOnChange: false,
   })
 
   const handleFormChange = ({ target }) => {
